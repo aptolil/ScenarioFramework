@@ -161,31 +161,33 @@ The configuration key (e.g. "LATrainReady") is the scenario state name.
 - `carriages.cargoTypes` - The kind of cargo this train should have. Se subject "Cargo types" above.
 - `botSetup` - Bot trains that will be spawned at start up. For a description of its parameters, se `BotScenarios` below. Omit this part if no bot trains should be created at the scenario start.
 
+```
     StartAlternatives = {
-    ["LATrainReady"] = {
-        scenarioId = 2,
-        signal = "LB_Tm305",
-        distance = 30,
-        scenarioState = "LATrainReady",
-        radioChannel = 2,
-        trainState = TrainsetState.tsShunting,
-        dynamicState = DynamicState.dsStop,
-        trainType = TrainTypes.Cargo,
-        welcomeText = "welcomeText",
-        playerPosition = { 15578.27, 337.76, 20606.96 }, 
-        playerInsideTrain = true,
-        timeTable = "PlayerLBshunt.xml", -- add time table for all and handle in setup
-        carriages = {
-            minLength = 250,
-            maxLength = 300,
-            maxWeight = -160,
-            cargoTypes = { CargoTypes.Containers, CargoTypes.Petroleum, Cargotypes.Wood }
-        },
-        botSetup = { { BotId = "BotAtLA", create = true, orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } },
-                    { BotId = "BotAtLAshunt", create = true, orderType = OrderType.Shunting, routes = {"LB_Tm308", "LB_M4kps" }, commands = { BotCommandType.bcDrive } },
+        ["LATrainReady"] = {
+            scenarioId = 2,
+            signal = "LB_Tm305",
+            distance = 30,
+            scenarioState = "LATrainReady",
+            radioChannel = 2,
+            trainState = TrainsetState.tsShunting,
+            dynamicState = DynamicState.dsStop,
+            trainType = TrainTypes.Cargo,
+            welcomeText = "welcomeText",
+            playerPosition = { 15578.27, 337.76, 20606.96 }, 
+            playerInsideTrain = true,
+            timeTable = "PlayerLBshunt.xml", -- add time table for all and handle in setup
+            carriages = {
+                minLength = 250,
+                maxLength = 300,
+                maxWeight = -160,
+                cargoTypes = { CargoTypes.Containers, CargoTypes.Petroleum, Cargotypes.Wood }
+            },
+            botSetup = { { BotId = "BotAtLA", create = true, orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } },
+                        { BotId = "BotAtLAshunt", create = true, orderType = OrderType.Shunting, routes = {"LB_Tm308", "LB_M4kps" }, commands = { BotCommandType.bcDrive } },
                     }
+        }
     }
-    }
+```
 
 #### StateMachine
 
@@ -199,6 +201,7 @@ When changing state to a target state a list of functions can be executed. Each 
 - `targetState` - defines the state that will be the current state after the transition is done. If targetState is a list of names, one of the names will be randomly selected.
 - `alwaysBotCmd` - If true, bot commands will always be performed if there are any, regardless of whether the the condition is true or not.
 
+```
     StateMachine = {
         ["LALocoReady"] =         { { type = TriggerType.Radio,    condition = nil, transition = { SetRoute },                     targetState = "LALocoStartShunting" } },
         ["LALocoStartShunting"] = { { type = TriggerType.Signal,   condition = nil, transition = { SetRoute },                     targetState = "LALocoShunting" } },
@@ -207,6 +210,7 @@ When changing state to a target state a list of functions can be executed. Each 
         ["LATrainShunting"] =     { { type = TriggerType.Track,    condition = nil, transition = { ChangeTrainStatusToDriving },   targetState = { "AtLC_S6a", "AtLC_S6b" } } },  
         ["AtDZ_Tm12_deco"] =      { { type = TriggerType.Decoupling, condition = nil, transition = nil,                            targetState = "AtDZ_Tm12" } }
     }
+```
 
 #### Routes
 
@@ -218,10 +222,12 @@ The Key value used muse be the same as the one used in StateMachine where functi
 - `orderType` - Defines the order type used when calling VDSetOrder (Shunting or Train)
 - `route` - Is a list of signal names between which a route shall be set.
 
+```
     Routes = {
         ["LALocoReady"] =         { orderType = OrderType.Shunting, route = { "LB_Tm415", "LB_Tm355", "LB_Tm346", "LB_H308", "LB_Tm205" } },
         ["AtDZ_E2"] =             { orderType = OrderType.Train,    route = { "DZ_E2", "DZ_G9" } }
     }
+```
 
 #### SignalTriggers
 
@@ -232,10 +238,12 @@ There should be one trigger defined for each defined trigger type "Signal" in th
 - `withStartState` - Trigger will only be created with these start scenario states, If withStartState is nil the trigger will always be used.
 - `waitFunction` - functions to execute before the trigger is finished
 
+```
     SignalTriggers = {
         { signal = "LB_Tm210", distance = 60, withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4"} },
         { signal = "SG_N7", distance = 50, waitFunction = { TrainTurnedOff, PlayerWalkingOutside } } 
     }
+```
 
 #### TrackTriggers
 
@@ -249,11 +257,13 @@ There should be one trigger defined for each defined trigger type "Track" in the
 - `lifetime` - Is used with a permanent trigger. The trigger will be deleted after it has fired this many times.
 - `withStartState` - Trigger will only be created with these start scenario states, If withStartState is nil the trigger will always be used.
 
+```
     TrackTriggers = {
         { track = "t13543", distance = 22, direction = 0 }, 
         { track = "t12890", distance = 68, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, withStartState = { "LALocoReady", "LALocoReady2" , "LALocoReady4", "LALocoReady5"} }, 
         { track = "t26820", distance = 34, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, type = TrackTriggerType.Back, isPermanent = true, lifetime = 2  } 
     }
+```
 
 #### RadioTriggers
 
@@ -266,6 +276,7 @@ Each scenarioState in the StateMachine where TriggerType is Radio has to have a 
 - `chats.source` - Who is talking (Driver or Dispatcher)
 - `chats.text` - A text and sound key to be used. 
 
+```
     RadioTriggers = {
         { "LALocoReady",
             { radioButtons = { 1, 3 },
@@ -276,6 +287,7 @@ Each scenarioState in the StateMachine where TriggerType is Radio has to have a 
             }
         }
     }
+```
 
 #### StartCarriages
 
@@ -290,8 +302,9 @@ Carriages that will be created when starting the scenario. They can be "bot" car
 - `belongsToPlayerTrain` - At scenario start a pop up text will show player train length och weight for the scenario. This parameter defines if carriages length and weight should be included in the player train. It can be used in scenarios where the player starts by shunting to the carriages.
 - `cargoTypes` - The kind of cargo this train should have. Se subject "Cargo types" above.
 
+```
     StartCarriages = {
-    { trainType = TrainTypes.Cargo, minLength = 70, maxLength = 100, atSignalName = "LB_Tm304", distance = 60, trainPhysics = TrainPhysics.Bot,
+        { trainType = TrainTypes.Cargo, minLength = 70, maxLength = 100, atSignalName = "LB_Tm304", distance = 60, trainPhysics = TrainPhysics.Bot,
                 withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady" } },
         { trainType = TrainTypes.Cargo, maxWeight = -160, minLength = 300, maxLength = 450, atSignalName = "LB_Tm305", distance = 90, trainPhysics = TrainPhysics.Player, belongsToPlayerTrain = true, 
                 cargoTypes = { CargoTypes.Containers, CargoTypes.Petroleum, CargoTypes.Wood },
@@ -299,6 +312,7 @@ Carriages that will be created when starting the scenario. They can be "bot" car
         { trainType = TrainTypes.Cargo, maxWeight = 160, minLength = 50, maxLength = 100, atSignalName = "DZ_G13", distance = 74, trainPhysics = TrainPhysics.Player,
                 withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady", "AtDZ_Tm12_deco" } }
     }
+```
 
 #### BotScenarios
 
@@ -312,6 +326,7 @@ Each key contains a list of "bot actions" defined by the following parameters:
 - `create` - Is set to true if the bot train should be spawned.
 - `delete` - Is set to true if the bot trains should be de-spawned.
 
+```
     BotScenarios = {
         ["LALocoReady"] = {
             { BotId = "BotAtLA", orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } }
@@ -329,6 +344,7 @@ Each key contains a list of "bot actions" defined by the following parameters:
             { BotId = "BotCargoAtLCZ", delete = true }
         }
     }
+```
 
 ### ScenarioTriggers.lua
 
