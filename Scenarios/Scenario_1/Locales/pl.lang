@@ -1,0 +1,157 @@
+---------------------
+-- Tekst ramowy
+
+DispatcherIsReady=Dyżurny Ruchu gotów!
+DispatcherIsNotReady=Dyżurny ruchu jeszcze nie gotowy!
+NoAnswer=Brak odpowiedzi!
+SelectEngine=Wybierz pojazd do prowadzenia
+ConfirmEngine=Wybierz
+ScenarioData=Ten scenariusz rozpoczyna się dnia {0} {1} o godzinie {2}:{3}, temperatura wynosi {4} °C\nProwadzisz pociąg {5}, długość składu wynosi {6} metrów, masa składu wynosi {7} ton.
+GameOver=Pomyślnie ukończyłeś scenarusz.
+SelectScenario=Wybierz miejsce i sposób rozpoczęcia scenariusza
+ConfirmScenario=Wybierz miejsce
+SelectMonth=Wybierz miesiąc, w którym będzie miał miejsce scenariusz.
+ConfirmMonth=Wybierz miesiąc
+M01=Styczeń
+M02=Luty
+M03=Marzec
+M04=Kwiecień
+M05=Maj
+M06=Czerwiec
+M07=Lipiec
+M08=Sierpień
+M09=Wrzesień
+M10=Październik
+M11=Listopad
+M12=Grudzień
+
+Narrator=Opowiadaczu
+Driver=Kierowca
+Dispatcher=Dyspozytor
+BrakeTester=Tester hamulców
+
+SelectWeather=Wybierz pogodę, jaka będzie panować w scenariuszu
+ConfirmWeather=Wybierz pogodę
+LightSnow=Lekki śnieg
+Snow=Śnieg
+FreezingRain=Marznący deszcz
+Sleet=Deszcz ze śniegiem
+LightThunderStorm=Lekka burza
+ThunderstormWithLightRain=Burza z lekkim deszczem
+ThunderstormWithRain=Burza z deszczem
+ModerateRain=Umiarkowany deszcz
+LightRain=Lekki deszcz
+Mist=Mgiełka
+Haze=Mgła
+Fog=Mgła
+ClearSky=Czyste niebo
+FewClouds=Mało chmur
+BrokenClouds=Przerwane chmury
+ScatteredClouds=Przerwane chmury
+OvercastClouds=Pochmurne chmury
+
+SelectTime=Wybierz porę dnia, w której rozgrywa się scenariusz
+ConfirmTime=Wybierz czas
+01:00=1 am
+02:00=2 am
+03:00=3 am
+04:00=4 am
+05:00=5 am
+06:00=6 am
+07:00=7 am
+08:00=8 am
+09:00=9 am
+10:00=10 am
+11:00=11 am
+12:00=12 pm
+13:00=1 pm
+14:00=2 pm
+15:00=3 pm
+16:00=4 pm
+17:00=5 pm
+18:00=6 pm
+19:00=7 pm
+20:00=8 pm
+21:00=9 pm
+22:00=10 pm
+23:00=11 pm
+24:00=12 am
+
+    
+ET22=ET22  - 201E
+EU07=EU07
+Traxx=Traxx F140 MS2e
+EP07=EP07 - E4
+ET25=ET25 - Dragon 2
+ED250=ED250 - Pendolino
+EP08=EP08 - 102E
+EN57=EN57 - Kibel
+EN71=EN71 - Kibel
+EN76=EN76 - Elf
+EN96=EN96 - Elf
+
+
+LeakCheckStart=Rozpocznij sprawdzanie szczelności układu hamulcowego. Najpierw upewnij się, że hamulce są zwolnione.
+LeakCheckApplyBrake=Następnie należy nacisnąć hamulec, zmniejszając ciśnienie do wartości mniejszej niż 4,6 bara i odczekać minutę.
+LeakCheckReleaseBrake=Sprawdzanie szczelności zostało zakończone. Możesz ponownie zwolnić hamulce.
+LeakCheckPressureLeak=W układzie hamulcowym występuje nieszczelność. Ciśnienie spadło o ponad 0,5 bara podczas pomiaru. Należy je skorygować przed kontynuacją.
+LeakCheckPressureNoLeak=Układ hamulcowy jest szczelny i nie przecieka. Kontynuuj zgodnie z planem.
+
+BrakeCheckStart=Rozpocznij kontrolę układu hamulcowego. Najpierw upewnij się, że hamulce są zwolnione.
+BrakeCheckApplyBrake=Następnie należy nacisnąć hamulec, zmniejszając ciśnienie do wartości mniejszej niż 4,6 bara.
+BrakeCheckBrakesApplied=Hamulce są teraz zaciągnięte.
+BrakeCheckReleaseBrakes=Wszystkie hamulce działają prawidłowo. Kontynuuj, zwalniając hamulce.
+BrakeCheckBrakesReleased=Hamulce są teraz zwolnione.
+BrakeCheckBrakesNotOK=Kontrola hamulców nie powiodła się. Niektóre hamulce wydają się być zablokowane. Kontrola hamulców musi zostać powtórzona.
+BrakeCheckBrakesOK=Kontrola hamulców zakończona powodzeniem.
+      
+----------------------------
+-- Tekst scenariusza 
+
+Scenario1=Start z manewrami w Łazach (LA)
+Scenario2=Odjazd z Łazów (LA)
+Scenario3=Przyjazd do Dąbrowy Górniczej Ząbkowice
+Scenario4=Odjazd do Dąbrowy Górniczej Ząbkowice
+Scenario5=Zjazd na tor postojwy w Sosnowcu. 
+
+-- Welcome texts
+WelcomeLALocoReady=Witaj! W tym scenariuszu najpierw wykonasz manewry po wagony w Łazach. Następnie pojedziesz zestawionym składem do Dąbrowy Górniczej Ząbkowice. Tam przyłączysz do składu dodatkowe wagony i poprowadzisz skład dalej, do Będzina, gdzie odłączysz wagony. Scenariusz zakończy się w Sosnowcu Głównym gdy odstawisz lokomotywę na tor postojowy.
+
+-- Shunting
+ChangeDirection=Zmień kierunek i jedź do następnego przystanku.
+ChangeDirectionToCarriages=Zmień kabinę i manewruj po wagony.
+
+-- Train status
+IsShunting=Jazda manewrowa.
+IsDriving=Jazda pociągowa.
+
+-- Scanario start at LA.
+DrvTrainReady=Łazy dla 3652, pod tarczą Tm 415, gotów do manewrów.
+DrvTrainReady2=Łazy dla 3652, pod semaforem R3, gotów do manewrów.
+DrvTrainReady3=Łazy dla 3652, pod semaforem O, gotów do manewrów.
+DrvTrainReady4=Łazy dla 3652, pod tarczą Tm 411, gotów do manewrów.
+DrvTrainReady5=Łazy dla 3652, pod tarczą Tm 411, gotów do manewrów.
+DspShuntToCarriages=Pociąg 3652. Trasa ustawiona na wagony. Czekaj na sygnał.
+DrvShuntToCarriages=3652, zrozumiałem.
+
+-- 
+DrvLaTrainDepart=Łazy zgłoś się dla 3652, Skład gotów do drogi.
+DspLaTrainDepart=Przyjąłem 3652, czekaj na sygnał.
+            
+-- Arrived att Dz first signal. Change to shunting
+DrvDzArrived=Ząbkowice dla 3652, zgłaszam przyjazd do DZ. Czekam pod semaforem E2.
+DspDzBeginShunting=3652, zaraz podam manewrowy. Po minięciu semafora E2 manewruj według sygnałów manewrowych.
+DrvDzArrived2=Ząbkowice dla 3652, zgłaszam przyjazd do DZ. Czekam pod semaforem B.
+DspDzBeginShunting2=3652, zaraz podam manewrowy. Po minięciu semafora B manewruj według sygnałów manewrowych.
+
+-- Arrived at DZ. Loco ready to shunt to new wagons
+DrvDzShuntToNewWagons=Ząbkowice dla 3652, pod tarczą Tm12, czekam na zezwolenie na manewr po dodatkowe wagony.
+DspDzShuntToNewWagons=3652, zezwalam na manewr na tor zajęty po dodatkowe wagony. Czekaj na sygnał na tarczy.
+
+-- More wagons added at DZ and train is ready for departure
+DrvDzTrainDepart=Ząbkowice zgłoś się dla 3652, skład gotów do odjazdu.
+DspDzTrainDepart=3652, zaraz zaświecę wyjazdowy.
+            
+-- 
+DrvBReady=Będzin dla 3652, zgłaszam gotowość do odjazdu.
+DspBRodger=3652, zaraz podam wyjazd.

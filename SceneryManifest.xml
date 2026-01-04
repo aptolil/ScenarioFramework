@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SceneryManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <UID>824bc28a-2aa9-4c34-a6b5-f338b56d9806</UID>
+  <SceneName>aptolil</SceneName>
+  <ThumbnailFile>aptolil.png</ThumbnailFile>
+  <ThumbnailText>Lars Lindner</ThumbnailText>
+  <MapFile>logo.png</MapFile>
+  <LocationNameHeader>Version: 0.1.0       Updated: 2026-01-04</LocationNameHeader>
+  <LocationName>Autor: Lars Lindner</LocationName>
+  <Description>DescriptionKey</Description>
+  <CustomTranslations>
+    <CustomTranslation Key="DescriptionKey">
+      <Translations>
+        <CustomTranslationEntry LanguageTag="en">An example scenario using the framework</CustomTranslationEntry>
+        <CustomTranslationEntry LanguageTag="pl">Przykładowy scenariusz wykorzystujący framework</CustomTranslationEntry>
+      </Translations>
+    </CustomTranslation>
+  </CustomTranslations>
+</SceneryManifest>

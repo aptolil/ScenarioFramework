@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimeTableStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<TrainName>TME</TrainName>
+	<TrainNumber>3652</TrainNumber>
+	<LineNumber>133</LineNumber>
+	<From>Łazy</From>
+	<To>Będzin</To>
+	<WayPoints>
+		<WayPointFromXml>
+			<NameOfPoint>Łazy</NameOfPoint>
+			<DisplayName>Łazy</DisplayName>
+			<StopType>technicalStop</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>60</ArrivalTime>
+			<DepartureTime>1200</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Łazy Łc</NameOfPoint>
+			<DisplayName>Łazy Łc</DisplayName>
+			<StopType>noStopover</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>1380</ArrivalTime>
+			<DepartureTime>1380</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Dąbrowa Górnicza Ząbkowice DZA</NameOfPoint>
+			<DisplayName>Dąbrowa Górnicza Ząbkowice DZA</DisplayName>
+			<StopType>noStopover</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>1980</ArrivalTime>
+			<DepartureTime>1980</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Dąbrowa Górnicza Ząbkowice</NameOfPoint>
+			<DisplayName>Dąbrowa Górnicza Ząbkowice</DisplayName>
+			<StopType>technicalStop</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>2040</ArrivalTime>
+			<DepartureTime>3240</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Dąbrowa Górnicza</NameOfPoint>
+			<DisplayName>Dąbrowa Górnicza</DisplayName>
+			<StopType>noStopover</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>3780</ArrivalTime>
+			<DepartureTime>3780</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Będzin</NameOfPoint>
+			<DisplayName>Będzin</DisplayName>
+			<StopType>noStopover</StopType>
+			<IsFinalStation>true</IsFinalStation>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>4140</ArrivalTime>
+			<DepartureTime>4740</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+	</WayPoints>
+	<StartSpeedLimit>40</StartSpeedLimit>
+	<StartGlobalSpeedLimit>80</StartGlobalSpeedLimit>
+	<StartRadioChannels>
+		<int>2</int>
+	</StartRadioChannels>
+</TimeTableStorage>

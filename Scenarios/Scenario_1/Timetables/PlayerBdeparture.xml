@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimeTableStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<TrainName>TME</TrainName>
+	<TrainNumber>3652</TrainNumber>
+	<LineNumber>133</LineNumber>
+	<From>Będzin</From>
+	<To>Będzin</To>
+	<WayPoints>
+		<WayPointFromXml>
+			<NameOfPoint>Będzin</NameOfPoint>
+			<DisplayName>Będzin</DisplayName>
+			<StopType>noStopover</StopType>
+			<IsFinalStation>true</IsFinalStation>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>940</ArrivalTime>
+			<DepartureTime>1540</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+	</WayPoints>
+	<StartSpeedLimit>40</StartSpeedLimit>
+	<StartGlobalSpeedLimit>80</StartGlobalSpeedLimit>
+	<StartRadioChannels>
+		<int>2</int>
+	</StartRadioChannels>
+</TimeTableStorage>

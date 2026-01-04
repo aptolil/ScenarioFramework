@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+		body {
+			background-color: #000000;
+			color: #ffffff;
+			font-family: "Play", serif;
+			font-weight: 400;
+			font-style: normal;
+			margin-top: 25px;
+			margin-bottom:25px;
+		}
+		
+		img {
+		   max-width:1000px;
+		}
+
+		.main-container {
+			width: 70%;
+			margin: 0 auto;
+			background-color: rgba(0,0,0,0.55);
+		}
+		
+		.text-container {
+			padding: 10px 35px 10px 30px;
+			overflow-y: scroll;
+			height: 1010px;
+		}
+		
+		.bg {
+			background: url("../../../../readme-background.png");
+			background-position: center;
+		    background-repeat: no-repeat;
+			background-size: cover;
+		}
+		
+		::-webkit-scrollbar {
+			width: 7px;
+			background-color: #4e4e4d ;
+		}
+
+		::-webkit-scrollbar-thumb{
+			background-color: rgb(189,189,188);
+		}
+
+	</style>
+	<body class="bg">
+		<div class="main-container">
+			<div class="text-container">
+				<h1 id="chapter-1">Welcome</h1>
+
+<p>In software development you normally don't want to mix software code with business logic. <br>
+That should normally apply to simrail scenarios as well. <br>
+That's the reason I have developed a small framework which makes it possible to<br>
+develop scenarios separated from lua code. <br>
+Scenarios are defined in a configuration file and, if the built in trigger functions are not enough, with separate user defined trigger functions. </p>
+
+<p>In this ReadMe file you will find a short description of the example scenario as well as a description of how to use the framework when developing your own scenarios.</p>
+
+<h2>Mission</h2>
+
+<p>This is a short example scenario where you will be shunting in odd places and bot trains will come and go in a perhaps unrealistic way. <br>
+The purpose of this scenario is not to be realistic. It is more an example of how one can use the Framework to create a scenario in a simplified way.</p>
+
+<p>This scenario starts in Lazy where you will be shunting to your carriages. <br>
+As a first action, call the dispatcher who will create a route for you to the carriages. Call the dispatcher once more when you have coupled the locomotive to the carriages and you are ready to departure.</p>
+
+<p>From Lazy you will be driving to Dąbrowa Górnicza Ząbkowice where you will add a couple of more carriages to the once you already have. Call the dispatcher again when arriving at the red light at Dąbrowa Górnicza Ząbkowice.<br>
+When at the station, make sure to stop at an appropriate distance from the shunting signals so that you new carriages and locomotive can fit and not extend past the signal. <br>
+The new carriages can be seen to the right and there are usually three och four carriages. Call the dispatcher when you have decoupled from your old carriages and the again when you have coupled the new carriages to the old once and you are ready to departure.</p>
+
+<p>At Będzin you will park your carriages at a side track. Decouple the carriages from your locomotive and call the dispatcher, telling him/her that you are ready to drive to your final destination, Sosnowiec Glówny, where you will park the locomotive.</p>
+
+<p>To finish the scenario you have to park the locomotive 50 meters or less from the signal. Turn off the locomotive and exit through the door.</p>
+
+<p>In a couple of places you might not get a go signal and no response from the dispatcher. If this happens to you, try to drive slowly closer to the signal. It should the give you a go signal.</p>
+
+<h1 id="chapter-2">Making your own scenarios</h1>
+
+<h2>File structure</h2>
+
+<p>To make your own scenario, copy the Framework file map, the mission.lua file and the ScenarioConfig.lua file.<br>
+Make changes to the ScenarioConfig.lua file and create your own Locales and Sound files.</p>
+
+<h2>Scenario files</h2>
+
+<h3>mission.lua</h3>
+
+<p>You don't have to change anything in the mission.lua file. Just copy it from this example scenario to your own scenario.</p>
+
+<h3>ScenarioConfig.lua</h3>
+
+<p>It is in this file where you configure the whole scenario. There is a couple of global variables used for defining the scenario. Where and how it starts and what will happen along the way to the final destination.<br>
+Below is a description of all variables you have to change to make your own scenario:</p>
+
+<h4>Environment</h4>
+
+<p>With this variable you can decide how to set the month, time of day and the weather. If <code>Month</code>, <code>Hour</code> and/or <code>Weather</code> are specified those specific values are used. If not, the <code>SelectMonth</code>, <code>SelectTime</code> and/or <code>SelectWeather</code> is set to <code>true</code> the player will be prompted with a drop down menu where he/she can select what is appropriate. If they are set to false a random value vill be selected.</p>
+
+<p>In this example the scenario will start at 8 a clock (A fixed value). The month will be randomly selected and the weather will be selected by the user.</p>
+
+<pre><code>Environment = { 
+    SelectMonth = false, -- Month = 3,
+    SelectTime = false, Hour = 8,
+    SelectWeather = true, -- Weather = "Snow"
+}
+</code></pre>
+
+<h4>PlayerLocomotives</h4>
+
+<p>This section defines what locomotives you can drive in the scenario. If you defines more than one, you will be presented with a drop down menu where you can choose what train to drive.<br>
+Locomotives you can choose from are:</p>
+
+<ul>
+<li>Traxx</li>
+<li>ET22</li>
+<li>EU07</li>
+<li>ED250</li>
+<li>EP08</li>
+<li>EP07</li>
+<li>ET25</li>
+<li>EN57</li>
+<li>EN71</li>
+<li>EN76</li>
+<li><p>EN96</p>
+
+<p>PlayerLocomotives = { "Traxx", "ET22", "EU07", "EP07", "ET25" }</p></li>
+</ul>
+
+<h4>Scenario</h4>
+
+<p>This variable defines possible start positions within the scenario. For instance if the scenario starts with some shunting which will continue with train driving, it is possible to skip the shunting part and select that you want to start with the train driving part.<br>
+For each scenario start you have to define a structure like the one below:</p>
+
+<pre><code>Scenario = {
+    { scenarioId = 1, langText = "Scenario1" }
+}
+</code></pre>
+
+<p><code>scenarioId</code> is just a number used in the variable <code>StartAlternatives</code> below. It can be anything but must be found in <code>StartAlternatives</code>. <br>
+<code>langText</code> is a text key defined in a <code>locales/*.lang</code> file, describing the scenario. This text will be shown in a drop down menu if there are more than one alternative to choose from. </p>
+
+<h4>BotTrains</h4>
+
+<p>This variable defines all bot trains that will participate in the scenario. <br>
+Each train is defined with a key, e.g. "BotAtLA" below, and has a structure with the following parameters:</p>
+
+<ul>
+<li><code>locoName</code> - What locomotive to spawn. Se <code>PlayerLocomotives</code> for a list of locomotives to select from.</li>
+<li><code>minLength</code> - The train minimum length including carriages.</li>
+<li><code>maxLength</code> - The train maximum length including carriages. The actual train length will be a random number between min and max length. But the maximum total weight will effect the length as well.</li>
+<li><code>atSignalName</code> - The name of the signal where this train will be spawned.</li>
+<li><code>distance</code> - The distance from signal at which the train will be spawned.</li>
+<li><code>trainState</code> - The used trainset state (tsTrain or tsShunting)</li>
+<li><code>trainType</code> - Can be <code>Cargo</code> or <code>Passenger</code>.</li>
+<li><p><code>cargoTypes</code> - The kind of cargo this train should have. Se subject "Cargo types" below.</p>
+
+<p>BotTrains = {<br>
+    ["BotAtLA"] = { locoName = "ET22", minLength = 100, maxLength = 230, atSignalName = "LB<em>R1", distance = 130, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo },<br>
+    ["BotAtLAshunt"] = { locoName = "EU07", minLength = 20, maxLength = 60, atSignalName = "LB</em>Tm308", distance = 225, trainState = TrainsetState.tsShunting, trainType = TrainTypes.Cargo },<br>
+    ["BotArrivingAtLA"] = { locoName = "ED250", minLength = 187, maxLength = 187, atSignalName = "LB<em>P2", distance = 183, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger },<br>
+    ["BotDepartureFromLA"] = { locoName = "EN57", minLength = 187, maxLength = 187, atSignalName = "LB</em>H2", distance = 170, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger },<br>
+    ["BotPassengerAtDZ"] = { locoName = "EN76", minLength = 187, maxLength = 187, atSignalName = "DZ<em>X", distance = 190, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger },<br>
+    ["BotCargoAtLCZ"] = { locoName = "ET25", minLength = 187, maxLength = 450, atSignalName = "LC</em>Z", distance = 2000, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo, cargoTypes = { CargoTypes.Containers } },<br>
+    ["BotAtB"] = { locoName = "EU07", minLength = 200, maxLength = 300, atSignalName = "B_S", distance = 100, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger }<br>
+}</p></li>
+</ul>
+
+<p>This list of trains is just a template of possible trains to spawn. <br>
+They will not be spawned just because they are defined here. <br>
+Se section BotScenarios below for a description of how these definitions are used. </p>
+
+<h5>Cargo types</h5>
+
+<p>When creating a train set, you can influence the type of load it has by specifying the types of load desired. This is done by adding parameter "cargoTypes" to the trainset specification in <code>BotTrains</code>, <code>StartAlternatives</code> and/or <code>StartCarriages</code>. The following cargo types can be used:</p>
+
+<ul>
+<li>Coal</li>
+<li>Ballast</li>
+<li>Sand</li>
+<li>Wood</li>
+<li>Metal</li>
+<li>Pipelines</li>
+<li>Concrete</li>
+<li>Petroleum</li>
+<li>Gas</li>
+<li>Containers</li>
+</ul>
+
+<h4>StartAlternative</h4>
+
+<p>This is where the scenario start state will be configured. Where the player train will be spawned and in what state. What time table to use. <br>
+If the player train should have carriages and how they should be configured and what bot trains to spawn at the beginning.</p>
+
+<p>The configuration key (e.g. "LATrainReady") is the scenario state name.</p>
+
+<ul>
+<li><code>scenarioId</code> - Is an ID used in <code>Scenarios</code> (Se section above). Multiple start alternatives can have the same scenarioId. If so, one of them will be randomly selected.</li>
+<li><code>signal</code> - The signal at which the player locomotive will be spawned.</li>
+<li><code>distance</code> - The player locomotive will be spawned att this distance from the signal.</li>
+<li><code>scenarioState</code> - Is the name of the scenario state. (Se <code>StateMachine</code> below)</li>
+<li><code>trainState</code> - The player trainset state (<code>tsShunting</code> or <code>tsTrain</code>)</li>
+<li><code>radioChannel</code> - The radio channel to be used at start.</li>
+<li><code>dynamicState</code> - The player trainset dynamic state (e.g. <code>dsStop</code>)</li>
+<li><code>trainType</code> - Specifies the type of carriages to spawn (<code>Cargo</code> or <code>Passenger</code>)</li>
+<li><code>welcomeText</code> - A text and sound key for the narrator welcome text. </li>
+<li><code>playerPosition</code> - Se "known bugs" below</li>
+<li><code>playerInsideTrain</code> - If the player should be spawned inside the train (true) or not (false). Also, se "known bugs" below</li>
+<li><code>timeTable</code> - The name of the time table file to use.</li>
+<li><code>carriages</code> - Defines if the player locomotive should have carriages or not. Omit this part if no carriages should be used.</li>
+<li><code>carriages.minLength</code> - Minimum length of the trainset.</li>
+<li><code>carriages.maxLength</code> - Maximum length of the trainset. The actual length of the trainset will be a combination of a randomly selected length between min and max and the maximum weight the selected locomotive can pull.</li>
+<li><code>carriages.maxWeight</code> - If omitted, the locomotive train weight will be used. If > 0 the actual value will be used. If &lt; 0 the locomotive train weight - maxWeight will be used.</li>
+<li><code>carriages.cargoTypes</code> - The kind of cargo this train should have. Se subject "Cargo types" above.</li>
+<li><p><code>botSetup</code> - Bot trains that will be spawned at start up. For a description of its parameters, se <code>BotScenarios</code> below. Omit this part if no bot trains should be created at the scenario start.</p>
+
+<p>StartAlternatives = {<br>
+["LATrainReady"] = {<br>
+    scenarioId = 2,<br>
+    signal = "LB<em>Tm305",<br>
+    distance = 30,<br>
+    scenarioState = "LATrainReady",<br>
+    radioChannel = 2,<br>
+    trainState = TrainsetState.tsShunting,<br>
+    dynamicState = DynamicState.dsStop,<br>
+    trainType = TrainTypes.Cargo,<br>
+    welcomeText = "welcomeText",<br>
+    playerPosition = { 15578.27, 337.76, 20606.96 }, <br>
+    playerInsideTrain = true,<br>
+    timeTable = "PlayerLBshunt.xml", -- add time table for all and handle in setup<br>
+    carriages = {<br>
+        minLength = 250,<br>
+        maxLength = 300,<br>
+        maxWeight = -160,<br>
+        cargoTypes = { CargoTypes.Containers, CargoTypes.Petroleum, Cargotypes.Wood }<br>
+    },<br>
+    botSetup = { { BotId = "BotAtLA", create = true, orderType = OrderType.Train, routes = {"LB</em>R1", "LB<em>G2kps" }, commands = { BotCommandType.bcDrive } },<br>
+                { BotId = "BotAtLAshunt", create = true, orderType = OrderType.Shunting, routes = {"LB</em>Tm308", "LB_M4kps" }, commands = { BotCommandType.bcDrive } },<br>
+                }<br>
+}<br>
+}</p></li>
+</ul>
+
+<h4>StateMachine</h4>
+
+<p>Each state is defined with a key, called the current state name.  Each scenario state can have multiple triggers but only one can be executed, based on trigger type and condition. <br>
+The first match will be used. <br>
+When changing state to a target state a list of functions can be executed. Each trigger has parameters defined below:</p>
+
+<ul>
+<li><code>type</code> - is the kind of trigger that can initiate a state transition. There are six types of triggers that can be used (Radio, Signal, Coupling, Decoupling or Track)</li>
+<li><code>condition</code> - defines a function that has to return true for the transition to take effect</li>
+<li><code>transition</code> - defines a list och functions to execute when transition to a new state</li>
+<li><code>targetState</code> - defines the state that will be the current state after the transition is done. If targetState is a list of names, one of the names will be randomly selected.</li>
+<li><p><code>alwaysBotCmd</code> - If true, bot commands will always be performed if there are any, regardless of whether the the condition is true or not.</p>
+
+<p>StateMachine = {<br>
+    ["LALocoReady"] =         { { type = TriggerType.Radio,    condition = nil, transition = { SetRoute },                     targetState = "LALocoStartShunting" } },<br>
+    ["LALocoStartShunting"] = { { type = TriggerType.Signal,   condition = nil, transition = { SetRoute },                     targetState = "LALocoShunting" } },<br>
+    ["LALocoAtWagons"] =      { { type = TriggerType.Coupling, alwaysBotCmd = true, condition = { LeakCheck, BrakeCheck }, transition = nil, targetState = "LATrainReady" } },<br>
+    ["LATrainReady"] =        { { type = TriggerType.Radio,    condition = nil, transition = { SetRoute, ChangeWeather },      targetState = "LATrainShunting" } },<br>
+    ["LATrainShunting"] =     { { type = TriggerType.Track,    condition = nil, transition = { ChangeTrainStatusToDriving },   targetState = { "AtLC<em>S6a", "AtLC</em>S6b" } } },  <br>
+    ["AtDZ<em>Tm12</em>deco"] =      { { type = TriggerType.Decoupling, condition = nil, transition = nil,                            targetState = "AtDZ_Tm12" } }<br>
+}</p></li>
+</ul>
+
+<h4>Routes</h4>
+
+<p>Routes are used by state transition function "SetRoute". <br>
+Each scenarioState which uses transition function "SetRoute" has to have an entry in Routes. Se StateMachine above.</p>
+
+<p>The Key value used muse be the same as the one used in StateMachine where function "SetRoute" is used.</p>
+
+<ul>
+<li><code>orderType</code> - Defines the order type used when calling VDSetOrder (Shunting or Train)</li>
+<li><p><code>route</code> - Is a list of signal names between which a route shall be set.</p>
+
+<p>Routes = {<br>
+    ["LALocoReady"] =         { orderType = OrderType.Shunting, route = { "LB<em>Tm415", "LB</em>Tm355", "LB<em>Tm346", "LB</em>H308", "LB<em>Tm205" } },<br>
+    ["AtDZ</em>E2"] =             { orderType = OrderType.Train,    route = { "DZ<em>E2", "DZ</em>G9" } }<br>
+}</p></li>
+</ul>
+
+<h4>SignalTriggers</h4>
+
+<p>This structure defines what signal triggers should be created.<br>
+There should be one trigger defined for each defined trigger type "Signal" in the StateMachine. </p>
+
+<ul>
+<li><code>signal</code>, <code>distance</code> - where to place the trigger</li>
+<li><code>withStartState</code> - Trigger will only be created with these start scenario states, If withStartState is nil the trigger will always be used.</li>
+<li><p><code>waitFunction</code> - functions to execute before the trigger is finished</p>
+
+<p>SignalTriggers = {<br>
+    { signal = "LB<em>Tm210", distance = 60, withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4"} },<br>
+    { signal = "SG</em>N7", distance = 50, waitFunction = { TrainTurnedOff, PlayerWalkingOutside } } <br>
+}</p></li>
+</ul>
+
+<h4>TrackTriggers</h4>
+
+<p>This structure defines what track triggers should be created.<br>
+There should be one trigger defined for each defined trigger type "Track" in the StateMachine.</p>
+
+<ul>
+<li><code>track</code>, <code>distance</code>, <code>direction</code> - where to place the trigger</li>
+<li><code>waitFunction</code> - functions to execute before the trigger is finished</li>
+<li><code>type</code> - The kind och track trigger. Can be Back or Front. (Se TrackTriggerType)</li>
+<li><code>isPermanent</code> - If not true the trigger will be deleted after it has fired.</li>
+<li><code>lifetime</code> - Is used with a permanent trigger. The trigger will be deleted after it has fired this many times.</li>
+<li><p><code>withStartState</code> - Trigger will only be created with these start scenario states, If withStartState is nil the trigger will always be used.</p>
+
+<p>TrackTriggers = {<br>
+    { track = "t13543", distance = 22, direction = 0 }, <br>
+    { track = "t12890", distance = 68, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, withStartState = { "LALocoReady", "LALocoReady2" , "LALocoReady4", "LALocoReady5"} }, <br>
+    { track = "t26820", distance = 34, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, type = TrackTriggerType.Back, isPermanent = true, lifetime = 2  } <br>
+}</p></li>
+</ul>
+
+<h4>RadioTriggers</h4>
+
+<p>Define radio call trigger.</p>
+
+<p>Based on the scenario state, define what will happen when pressing a radio button.<br>
+Each scenarioState in the StateMachine where TriggerType is Radio has to have a definition in table RadioTriggers.</p>
+
+<ul>
+<li><code>radioButtons</code> - List of radio buttons that can be used.</li>
+<li><code>chats.source</code> - Who is talking (Driver or Dispatcher)</li>
+<li><p><code>chats.text</code> - A text and sound key to be used. </p>
+
+<p>RadioTriggers = {<br>
+    { "LALocoReady",<br>
+        { radioButtons = { 1, 3 },<br>
+        chats = { { source = RadioCallers.Driver, text = "DrvTrainReady" },<br>
+                    { source = RadioCallers.Dispatcher, text = "DspShuntToCarriages"},<br>
+                    { source = RadioCallers.Driver, text = "DrvShuntToCarriages"}<br>
+                }<br>
+        }<br>
+    }<br>
+}</p></li>
+</ul>
+
+<h4>StartCarriages</h4>
+
+<p>Carriages that will be created when starting the scenario. They can be "bot" carriages not used by the player or they can be carriages used by the player during the scenario.</p>
+
+<ul>
+<li><code>trainType</code> - The type of carriages to create (Cargo or Passenger)</li>
+<li><code>minLength</code>, <code>maxLenght</code> - Min and max length of the carriages set to create. The actual length will be a combination of these values and the maximum weight.</li>
+<li><code>maxWeight</code> - If omitted, only the length will be used. If > 0 the actual value will be used. If &lt; 0 the player locomotive train weight - maxWeight will be used.</li>
+<li><code>atSignalName</code>, <code>distance</code> - Where the place the carriages.</li>
+<li><code>trainPhysics</code> - Can be Bot or Player and decides what simulation physics will be used.</li>
+<li><code>withStartState</code> - If specified, these carriages will only be spawned for these scenario start states. If omitted, they will be spawned for all scenarios.</li>
+<li><code>belongsToPlayerTrain</code> - At scenario start a pop up text will show player train length och weight for the scenario. This parameter defines if carriages length and weight should be included in the player train. It can be used in scenarios where the player starts by shunting to the carriages.</li>
+<li><p><code>cargoTypes</code> - The kind of cargo this train should have. Se subject "Cargo types" above.</p>
+
+<p>StartCarriages = {<br>
+{ trainType = TrainTypes.Cargo, minLength = 70, maxLength = 100, atSignalName = "LB<em>Tm304", distance = 60, trainPhysics = TrainPhysics.Bot,<br>
+            withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady" } },<br>
+    { trainType = TrainTypes.Cargo, maxWeight = -160, minLength = 300, maxLength = 450, atSignalName = "LB</em>Tm305", distance = 90, trainPhysics = TrainPhysics.Player, belongsToPlayerTrain = true, <br>
+            cargoTypes = { CargoTypes.Containers, CargoTypes.Petroleum, CargoTypes.Wood },<br>
+            withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5"} },<br>
+    { trainType = TrainTypes.Cargo, maxWeight = 160, minLength = 50, maxLength = 100, atSignalName = "DZ<em>G13", distance = 74, trainPhysics = TrainPhysics.Player,<br>
+            withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady", "AtDZ</em>Tm12_deco" } }<br>
+}</p></li>
+</ul>
+
+<h4>BotScenarios</h4>
+
+<p>This variable defines what to do with bot trains during the scenario. It contains a list of scenario name keys. The same names used in the StateMachine above. <br>
+Each key contains a list of "bot actions" defined by the following parameters:</p>
+
+<ul>
+<li><code>BotId</code> - Defines what bot train these actions are fore. Se <code>BotTrains</code> above.</li>
+<li><code>orderType</code> - The VDSetRoute order type to use (Train or Shunting)</li>
+<li><code>routes</code> - A list of signal names between which a route should be set using VDSetRoute.</li>
+<li><code>commands</code> - A list of bot commands to use, e.g. bcDrive.</li>
+<li><code>create</code> - Is set to true if the bot train should be spawned.</li>
+<li><p><code>delete</code> - Is set to true if the bot trains should be de-spawned.</p>
+
+<p>BotScenarios = {<br>
+    ["LALocoReady"] = {<br>
+        { BotId = "BotAtLA", orderType = OrderType.Train, routes = {"LB<em>R1", "LB</em>G2kps" }, commands = { BotCommandType.bcDrive } }<br>
+    },<br>
+    ["LALocoAtWagons"] = {<br>
+        { BotId = "BotAtLAshunt", create = true, commands = { BotCommandType.bcDrive } },<br>
+        { BotId = "BotAtLA", delete = true }<br>
+    },<br>
+    ["LATrainShunting"] = {<br>
+        { BotId = "BotArrivingAtLA", create = true, orderType = OrderType.Train, routes = {"LB<em>P2", "LB</em>R3" }, commands = { BotCommandType.bcDrive } },<br>
+        { BotId = "BotDepartureFromLA", create = true, orderType = OrderType.Train, routes = {"LB<em>H2", "LB</em>P2kps" }, commands = { BotCommandType.bcDrive } }<br>
+    },<br>
+    ["AtDZ_E2"] = {<br>
+        { BotId = "BotArrivingAtLA", delete = true },<br>
+        { BotId = "BotCargoAtLCZ", delete = true }<br>
+    }<br>
+}</p></li>
+</ul>
+
+<h3>ScenarioTriggers.lua</h3>
+
+<p>In the <code>ScenarioConfig.lua</code> file, trigger functions can be called in different situations. They can be called from the <code>StateMachine</code>, <code>SignalTriggers</code> or <code>TrackTriggers</code> structures.</p>
+
+<p>There are a couple of pre defined trigger functions that can be used and they can be found below. <br>
+If you need to define your own trigger functions they should be defined in this file. Functions are called with parameter <code>trainsetInfo</code>.</p>
+
+<p>Pre defined functions are:</p>
+
+<ul>
+<li><code>SetRoute</code> - Set a new route found in <code>ScenatioConfig.lua</code>, variable <code>Routes</code>.</li>
+<li><code>WaitForTrainToStop</code> - Wait for the train to stop.</li>
+<li><code>ChangeDirectionAndShunt</code> - Waits for the train to stop after which the narrator tells the player to change direction and continue to shunt.</li>
+<li><code>ChangeDirectionAndShuntToCarriages</code> - Waits for the train to stop after which the narrator tells the player to change direction and continue to shunt to the carriages.</li>
+<li><code>TrainTurnedOff</code> - Waits until the locomotive is parked and turned off.</li>
+<li><code>PlayerWalkingOutside</code> - Waits for the player to be walking outside the locomotive.</li>
+<li><code>EndOfGame</code> - Finished the scenario.</li>
+<li><code>ChangeTrainStatusToDriving</code> -  Change train status to driving</li>
+<li><code>ChangeTrainStatusToShunting</code> - Change train status to shunting</li>
+<li><code>ChangeWeather</code> - Change current weather type</li>
+<li><code>LeakCheck</code> - Perform a break system leak check</li>
+<li><code>BrakeCheck</code> - Perform a brake system check</li>
+</ul>
+
+<h3>Known bugs</h3>
+
+<p>Player can not be spawned outside the locomotive at a specified place. Parameter <code>playerPosition</code> in <code>StartAlternatives</code> has no effect or can make de game to freez. </p>
+
+			</div>
+		</div>
+	</body>
+</html>

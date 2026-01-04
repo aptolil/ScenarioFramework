@@ -1,0 +1,159 @@
+---------------------
+-- Framework text
+
+DispatcherIsReady=Dispatcher is now ready!
+DispatcherIsNotReady=Dispatcher is not ready yet!
+NoAnswer=There is no answer!
+SelectEngine=Select an engine to drive
+ConfirmEngine=Select
+ScenarioData=This scenario takes place in {0} {1} at {2}:{3} and the temperature is {4} degrees Celcius\nYou are driving a train {5} your wagonset is {6} meters long and have a weight of {7} tons.
+GameOver=You have successfully finished the game.
+SelectScenario=Select a start scenario
+ConfirmScenario=Select scenario
+SelectMonth=Select the month when the scenario takes place.
+ConfirmMonth=Select month
+M01=January
+M02=February
+M03=March
+M04=April
+M05=May
+M06=June
+M07=July
+M08=August
+M09=September
+M10=October
+M11=November
+M12=December
+
+Narrator=Narrator
+Driver=Driver
+Dispatcher=Dispatcher
+BrakeTester=Brake tester
+
+
+SelectWeather=Choose what weather it is during the scenario
+ConfirmWeather=Select weather
+LightSnow=Light snow
+Snow=Snow
+FreezingRain=Freezing rain
+Sleet=Sleet
+LightThunderStorm=Light thunderstorm
+ThunderstormWithLightRain=Thunderstorm with light rain
+ThunderstormWithRain=Thunderstorm with rain
+ModerateRain=Moderate rain
+LightRain=Light rain
+Mist=Mist
+Haze=Haze
+Fog=Fog
+ClearSky=Clear sky
+FewClouds=Few clouds
+BrokenClouds=Broken clouds
+ScatteredClouds=Scattered clouds
+OvercastClouds=Overcast clouds
+            
+
+SelectTime=Choose the time of day when the scenario takes place
+ConfirmTime=Select time
+01:00=1 am
+02:00=2 am
+03:00=3 am
+04:00=4 am
+05:00=5 am
+06:00=6 am
+07:00=7 am
+08:00=8 am
+09:00=9 am
+10:00=10 am
+11:00=11 am
+12:00=12 pm
+13:00=1 pm
+14:00=2 pm
+15:00=3 pm
+16:00=4 pm
+17:00=5 pm
+18:00=6 pm
+19:00=7 pm
+20:00=8 pm
+21:00=9 pm
+22:00=10 pm
+23:00=11 pm
+24:00=12 am
+
+ET22=ET22  - 201E
+EU07=EU07
+Traxx=Traxx F140 MS2e
+EP07=EP07 - E4
+ET25=ET25 - Dragon 2
+ED250=ED250 - Pendolino
+EP08=EP08 - 102E
+EN57=EN57 - Kibel
+EN71=EN71 - Kibel
+EN76=EN76 - Elf
+EN96=EN96 - Elf
+
+
+LeakCheckStart=Start a brake system leak check. First make sure brakes are released.
+LeakCheckApplyBrake=Now, apply the brakes by lowering the pressure to less than 4.6 bar and wait for one minute.
+LeakCheckReleaseBrake=Leak check is now finished. You can release the brakes again.
+LeakCheckPressureLeak=There is a leak in the brake system. The pressure has decreased by more than 0.5 bar during the measurement period. It must be corrected before you can continue.
+LeakCheckPressureNoLeak=The brake system is tight and does not leak. Continue as planned.
+
+BrakeCheckStart=Start a brake system check. First make sure brakes are released.
+BrakeCheckApplyBrake=Now, apply the brakes by lowering the pressure to less than 4.6 bar.
+BrakeCheckBrakesApplied=Brakes are now applied.
+BrakeCheckReleaseBrakes=All brakes are alright. Continue by releasing the brakes.
+BrakeCheckBrakesReleased=Bakes are now released.
+BrakeCheckBrakesNotOK=Brake check failed. Some brakes seams to be stuck. The brake check has to be repeated.
+BrakeCheckBrakesOK=Brake check succeeded.
+----------------------------
+-- Scenario text 
+
+Scenario1=Start with shunting at LA
+Scenario2=Departure from LA
+Scenario3=Arrived at Dąbrowa Górnicza Ząbkowice
+Scenario4=Departure from Dąbrowa Górnicza Ząbkowice
+Scenario5=Carriages decoupled at Będzin. You just have to park the locomotive at Sosnowiec Glówny. 
+Scenario6=At LA Station
+    
+      
+-- Welcome texts
+WelcomeLALocoReady=Welcome! In this scenario you will first be shunting to your carriages here in Lazy. Then you will be driving to Dabrowa Górnicza Zabkowice where you will add more carriages and the carry on to Bedzin where you will decouple the carriages. You are finished when parking the train at Sosnowiec Glówny. 
+
+-- Shunting
+ChangeDirection=Change direction and shunt to next stop.
+ChangeDirectionToCarriages=Change direction and shunt to your carriages.
+
+-- Train status
+IsShunting=You are now shunting.
+IsDriving=You are now driving as a train.
+
+-- Scanario start at LA.
+DrvTrainReady=Driver of train 3652 at signal Tm 415 is ready to shunt to the carriages.
+DrvTrainReady2=Driver of train 3652 at signal R3 is ready to shunt to the carriages.
+DrvTrainReady3=Driver of train 3652 at signal O is ready to shunt to the carriages.
+DrvTrainReady4=Driver of train 3652 at signal Tm 411 is ready to shunt to the carriages.
+DrvTrainReady5=Driver of train 3652 at signal Tm 411 is ready to shunt to the carriages.
+DspShuntToCarriages=Train 3652. Route set to carriages. Wait for the signal.
+DrvShuntToCarriages=3652, Rodger that.
+
+-- 
+DrvLaTrainDepart=Driver of train 3652 is ready for departure.
+DspLaTrainDepart=Train 3652, wait for the signal.
+            
+-- Arrived att Dz first signal. Change to shunting
+DrvDzArrived=Train 3652 arrived at DZ, waiting at signal E2
+DspDzBeginShunting=Train 3652, From here you will be shunting. Watch shunting signals after passing singnal E2
+DrvDzArrived2=Train 3652 arrived at DZ, waiting at signal B
+DspDzBeginShunting2=Train 3652, From here you will be shunting. Watch shunting signals after passing singnal B
+
+-- Arrived at DZ. Loco ready to shunt to new wagons
+DrvDzShuntToNewWagons=Driver of train 3652 at signal Tm12 request permission to shunt to new wagons to be added to the train
+DspDzShuntToNewWagons=Train 3652, You have permission to shunt to your new wagons. Wait for the signal
+
+-- More wagons added at DZ and train is ready for departure
+DrvDzTrainDepart=Train 3652 ready for departure.
+DspDzTrainDepart=Train 3652, wait for the signal.
+            
+-- 
+DrvBReady=Train 3652 ready to drive to final destination
+DspBRodger=Train 3652, wait for the signal

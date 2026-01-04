@@ -1,0 +1,57 @@
+<ScenarioManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <UID>da09ab0c-f6ba-4971-869c-06412684f9bb</UID>
+  <Required_Level>1</Required_Level>
+  <Train_Type>Cargo</Train_Type>
+  <Scenario_Name>Love to shunt</Scenario_Name>
+  <Train_Engine_Names>
+	  <string>EU07</string>
+    <string>Traxx</string>
+    <string>ET22</string>
+	  <string>ET25</string>
+	  <string>EP07</string>
+  </Train_Engine_Names>
+  <Train_Car_Names/>
+  <Scenario_Start_Time>2024-08-05T10:00:00</Scenario_Start_Time>
+  <Scenario_Lenght>90</Scenario_Lenght>
+  <Difficulty>1</Difficulty>
+  <TrackLenghtInMeters>5000</TrackLenghtInMeters>
+  <SeasonOfTheYear>Summer</SeasonOfTheYear>
+  <SceneVariant>Default</SceneVariant>
+  <HeaderText>HeaderText</HeaderText>
+  <SubHeaderText>SubHeaderText</SubHeaderText>
+  <MapFile>Map.png</MapFile>
+  <MainThumbnailPath>Map.png</MainThumbnailPath>
+  <MiniThumbnailPath1>minithumbnails/Thumbnail1.png</MiniThumbnailPath1>
+  <MiniThumbnailPath2>minithumbnails/Thumbnail2.png</MiniThumbnailPath2>
+  <MiniThumbnailPath3>minithumbnails/Thumbnail3.png</MiniThumbnailPath3>
+  <Description>ScenarioDescription</Description>
+  <MissionFile>mission.lua</MissionFile>
+  <TimeTableFile/>
+  <CustomTranslations>
+    <CustomTranslation Key="SceneryNameText">
+      <Translations>
+        <CustomTranslationEntry LanguageTag="en">Love to shunt</CustomTranslationEntry>
+        <CustomTranslationEntry LanguageTag="pl">Uwielbiam manewrować</CustomTranslationEntry>
+      </Translations>
+    </CustomTranslation>
+    <CustomTranslation Key="HeaderText">
+      <Translations>
+        <CustomTranslationEntry LanguageTag="en">Lazy - Sosnowiec Glówny</CustomTranslationEntry>
+        <CustomTranslationEntry LanguageTag="pl">Lazy - Sosnowiec Glówny</CustomTranslationEntry>
+      </Translations>
+    </CustomTranslation>
+    <CustomTranslation Key="SubHeaderText">
+      <Translations>
+        <CustomTranslationEntry LanguageTag="en">Sub header text in English</CustomTranslationEntry>
+        <CustomTranslationEntry LanguageTag="pl">Tekst podtytułu w języku polskim</CustomTranslationEntry>
+      </Translations>
+    </CustomTranslation>
+    <CustomTranslation Key="ScenarioDescription">
+      <Translations>
+        <CustomTranslationEntry LanguageTag="en">In this scenario you will first be shunting to your carriages here in Lazy. Then you will be driving to Dabrowa Górnicza Zabkowice where you will add more carriages and then carry on to Bedzin where you will decouple the carriages. You are finished when parking the train at Sosnowiec Glówny.</CustomTranslationEntry>
+        <CustomTranslationEntry LanguageTag="pl">W tym scenariuszu najpierw ustawisz się do swoich wagonów tutaj, w Łazach. Następnie pojedziesz do Dąbrowy Górniczej Ząbkowice, gdzie dodasz kolejne wagony, a następnie do Będzina, gdzie rozłączysz wagony. Koniec z parkowaniem pociągu w Sosnowcu Głównym.</CustomTranslationEntry>
+      </Translations>
+    </CustomTranslation>
+  </CustomTranslations>
+  <RequiredDLC>Cargo Pack</RequiredDLC>
+</ScenarioManifest>

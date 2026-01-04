@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimeTableStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<TrainName>TME</TrainName>
+	<TrainNumber>3652</TrainNumber>
+	<LineNumber>133</LineNumber>
+	<From>Dąbrowa Górnicza Ząbkowice</From>
+	<To>Będzin</To>
+	<WayPoints>
+		<WayPointFromXml>
+			<NameOfPoint>Dąbrowa Górnicza Ząbkowice</NameOfPoint>
+			<DisplayName>Dąbrowa Górnicza Ząbkowice</DisplayName>
+			<StopType>technicalStop</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>0</ArrivalTime>
+			<DepartureTime>40</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Dąbrowa Górnicza</NameOfPoint>
+			<DisplayName>Dąbrowa Górnicza</DisplayName>
+			<StopType>noStopover</StopType>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>580</ArrivalTime>
+			<DepartureTime>580</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+		<WayPointFromXml>
+			<NameOfPoint>Będzin</NameOfPoint>
+			<DisplayName>Będzin</DisplayName>
+			<StopType>noStopover</StopType>
+			<IsFinalStation>true</IsFinalStation>
+			<Line>0</Line>
+			<Mileage>0</Mileage>
+			<ArrivalTime>940</ArrivalTime>
+			<DepartureTime>1540</DepartureTime>
+			<TrainType>TME</TrainType>
+			<StationCategory/>
+		</WayPointFromXml>
+	</WayPoints>
+	<StartSpeedLimit>40</StartSpeedLimit>
+	<StartGlobalSpeedLimit>80</StartGlobalSpeedLimit>
+	<StartRadioChannels>
+		<int>2</int>
+	</StartRadioChannels>
+</TimeTableStorage>
