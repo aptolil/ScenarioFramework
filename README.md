@@ -10,6 +10,6 @@ The scenario readme files can be viewed within Simrail but code examples seams t
 
 To niewielki framework, który opracowałem z myślą o ułatwieniu każdemu tworzenia własnych scenariuszy w Simrail. (https://wiki.simrail.eu/).
 
-Opis korzystania z frameworka można znaleźć w pliku readme scenariuszy w `Scenarios/Scenario_1/ReadMe/en/README.md`.
+Opis korzystania z frameworka można znaleźć w pliku readme scenariuszy w `Scenarios/Scenario_1/ReadMe/pl/README.md`.
 
 Pliki readme scenariuszy można przeglądać w Simrail, ale przykłady kodu wydają się być niepoprawnie sformatowane, dlatego lepiej otworzyć plik bezpośrednio w edytorze.
