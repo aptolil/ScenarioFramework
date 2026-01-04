@@ -103,6 +103,7 @@ Each train is defined with a key, e.g. "BotAtLA" below, and has a structure with
 - `trainType` - Can be `Cargo` or `Passenger`.
 - `cargoTypes` - The kind of cargo this train should have. Se subject "Cargo types" below.
 
+```
     BotTrains = {
         ["BotAtLA"] = { locoName = "ET22", minLength = 100, maxLength = 230, atSignalName = "LB_R1", distance = 130, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo },
         ["BotAtLAshunt"] = { locoName = "EU07", minLength = 20, maxLength = 60, atSignalName = "LB_Tm308", distance = 225, trainState = TrainsetState.tsShunting, trainType = TrainTypes.Cargo },
@@ -112,6 +113,7 @@ Each train is defined with a key, e.g. "BotAtLA" below, and has a structure with
         ["BotCargoAtLCZ"] = { locoName = "ET25", minLength = 187, maxLength = 450, atSignalName = "LC_Z", distance = 2000, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo, cargoTypes = { CargoTypes.Containers } },
         ["BotAtB"] = { locoName = "EU07", minLength = 200, maxLength = 300, atSignalName = "B_S", distance = 100, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger }
     }
+```
 
 This list of trains is just a template of possible trains to spawn. 
 They will not be spawned just because they are defined here. 
