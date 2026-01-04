@@ -100,6 +100,7 @@ Każdy pociąg jest zdefiniowany za pomocą klucza, np. „BotAtLA” poniżej, 
 - `trainState` - Stan używanego składu pociągu (tsTrain lub tsShunting)
 - `trainType` - Może być `Cargo` lub `Passenger`.
 
+```
     BotTrains = {
         ["BotAtLA"] = { locoName = "ET22", minLength = 100, maxLength = 230, atSignalName = "LB_R1", distance = 130, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo },
         ["BotAtLAshunt"] = { locoName = "EU07", minLength = 20, maxLength = 60, atSignalName = "LB_Tm308", distance = 225, trainState = TrainsetState.tsShunting, trainType = TrainTypes.Cargo },
@@ -109,6 +110,7 @@ Każdy pociąg jest zdefiniowany za pomocą klucza, np. „BotAtLA” poniżej, 
         ["BotCargoAtLCZ"] = { locoName = "ET25", minLength = 187, maxLength = 450, atSignalName = "LC_Z", distance = 750, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Cargo },
         ["BotAtB"] = { locoName = "EU07", minLength = 200, maxLength = 300, atSignalName = "B_S", distance = 100, trainState = TrainsetState.tsTrain, trainType = TrainTypes.Passenger }
     }
+```
 
 Ta lista pociągów to jedynie szablon możliwych pociągów do utworzenia.
 Nie zostaną utworzone tylko dlatego, że zostały tutaj zdefiniowane.
@@ -139,30 +141,32 @@ Klucz konfiguracji (np. „LATrainReady”) to nazwa stanu scenariusza.
 - `carriages.maxWeight` - Jeśli pominięto, zostanie użyta masa składu lokomotywy. Jeśli > 0, zostanie użyta wartość rzeczywista. Jeśli < 0, zostanie użyta masa składu lokomotywy - maxWeight.
 - `botSetup` - Pociągi botów, które zostaną utworzone podczas uruchamiania. Opis parametrów znajduje się poniżej w sekcji `BotScenarios`. Pomiń tę część, jeśli na początku scenariusza nie mają być tworzone żadne pociągi botów.
 
+```
     StartAlternatives = {
-    ["LATrainReady"] = {
-        scenarioId = 2,
-        signal = "LB_Tm305",
-        distance = 30,
-        scenarioState = "LATrainReady",
-        radioChannel = 2,
-        trainState = TrainsetState.tsShunting,
-        dynamicState = DynamicState.dsStop,
-        trainType = TrainTypes.Cargo,
-        welcomeText = "welcomeText",
-        playerPosition = { 15578.27, 337.76, 20606.96 }, 
-        playerInsideTrain = true,
-        timeTable = "PlayerLBshunt.xml", -- add time table for all and handle in setup
-        carriages = {
-            minLength = 250,
-            maxLength = 300,
-            maxWeight = -160
-        },
-        botSetup = { { BotId = "BotAtLA", create = true, orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } },
-                    { BotId = "BotAtLAshunt", create = true, orderType = OrderType.Shunting, routes = {"LB_Tm308", "LB_M4kps" }, commands = { BotCommandType.bcDrive } },
+        ["LATrainReady"] = {
+            scenarioId = 2,
+            signal = "LB_Tm305",
+            distance = 30,
+            scenarioState = "LATrainReady",
+            radioChannel = 2,
+            trainState = TrainsetState.tsShunting,
+            dynamicState = DynamicState.dsStop,
+            trainType = TrainTypes.Cargo,
+            welcomeText = "welcomeText",
+            playerPosition = { 15578.27, 337.76, 20606.96 }, 
+            playerInsideTrain = true,
+            timeTable = "PlayerLBshunt.xml", -- add time table for all and handle in setup
+            carriages = {
+                minLength = 250,
+                maxLength = 300,
+                maxWeight = -160
+            },
+            botSetup = { { BotId = "BotAtLA", create = true, orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } },
+                        { BotId = "BotAtLAshunt", create = true, orderType = OrderType.Shunting, routes = {"LB_Tm308", "LB_M4kps" }, commands = { BotCommandType.bcDrive } },
                     }
+        }
     }
-    }
+```
 
 #### StateMachine
 
@@ -176,6 +180,7 @@ Podczas zmiany stanu na stan docelowy można wykonać listę funkcji. Każdy wyz
 - `targetState` - definiuje stan, który będzie stanem bieżącym po zakończeniu zmiany. Jeśli `targetState` jest listą nazw, jedna z nich zostanie wybrana losowo.
 - `alwaysBotCmd` - Jeżeli wartość jest równa prawda, polecenia bota będą zawsze wykonywane, jeżeli takowe istnieją, niezależnie od tego, czy warunek jest prawdziwy, czy nie.
 
+```
     StateMachine = {
         ["LALocoReady"] =         { { type = TriggerType.Radio,    condition = nil, transition = { SetRoute },                     targetState = "LALocoStartShunting" } },
         ["LALocoStartShunting"] = { { type = TriggerType.Signal,   condition = nil, transition = { SetRoute },                     targetState = "LALocoShunting" } },
@@ -184,6 +189,7 @@ Podczas zmiany stanu na stan docelowy można wykonać listę funkcji. Każdy wyz
         ["LATrainShunting"] =     { { type = TriggerType.Track,    condition = nil, transition = { ChangeTrainStatusToDriving },   targetState = { "AtLC_S6a", "AtLC_S6b" } } },  
         ["AtDZ_Tm12_deco"] =      { { type = TriggerType.Decoupling, condition = nil, transition = nil,                            targetState = "AtDZ_Tm12" } }
     }
+```
 
 #### Routes
 
@@ -195,10 +201,12 @@ Używana wartość klucza musi być taka sama, jak ta używana w StateMachine, g
 - `orderType` - Definiuje typ kolejności używany podczas wywoływania VDSetOrder (manewrowanie lub pociąg)
 - `route` - Jest listą nazw semaforów, między którymi ma zostać ustawiona trasa.
 
+```
     Routes = {
         ["LALocoReady"] =         { orderType = OrderType.Shunting, route = { "LB_Tm415", "LB_Tm355", "LB_Tm346", "LB_H308", "LB_Tm205" } },
         ["AtDZ_E2"] =             { orderType = OrderType.Train,    route = { "DZ_E2", "DZ_G9" } }
     }
+```
 
 #### SignalTriggers
 
@@ -209,10 +217,12 @@ Dla każdego zdefiniowanego typu wyzwalacza „Sygnał” w StateMachine powinie
 - `withStartState` - Wyzwalacz zostanie utworzony tylko z tymi stanami początkowymi scenariusza. Jeśli withStartState ma wartość nil, wyzwalacz będzie zawsze używany.
 - `waitFunction` - funkcje do wykonania przed zakończeniem wyzwalacza
 
+```
     SignalTriggers = {
         { signal = "LB_Tm210", distance = 60, withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4"} },
         { signal = "SG_N7", distance = 50, waitFunction = { TrainTurnedOff, PlayerWalkingOutside } } 
     }
+```
 
 #### TrackTriggers
 
@@ -226,11 +236,13 @@ Dla każdego zdefiniowanego typu wyzwalacza „Ścieżka” w StateMachine powin
 - `lifetime` - używane z wyzwalaczem trwałym. Wyzwalacz zostanie usunięty po określonej liczbie uruchomień.
 - `withStartState` - wyzwalacz zostanie utworzony tylko z tymi stanami scenariusza początkowego. Jeśli withStartState ma wartość null, wyzwalacz będzie zawsze używany.
 
+```
     TrackTriggers = {
         { track = "t13543", distance = 22, direction = 0 }, 
         { track = "t12890", distance = 68, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, withStartState = { "LALocoReady", "LALocoReady2" , "LALocoReady4", "LALocoReady5"} }, 
         { track = "t26820", distance = 34, direction = -1, waitFunction = { ChangeDirectionAndShuntToCarriages}, type = TrackTriggerType.Back, isPermanent = true, lifetime = 2  } 
     }
+```
 
 #### RadioTriggers
 
@@ -243,6 +255,7 @@ Każdy stan scenariusza (scenaryState) w StateMachine, gdzie TriggerType to Radi
 - `chats.source` - Kto mówi (kierowca czy dyspozytor)
 - `chats.text` - Klawisz tekstu i dźwięku, który ma zostać użyty.
 
+```
     RadioTriggers = {
         { "LALocoReady",
             { radioButtons = { 1, 3 },
@@ -253,6 +266,7 @@ Każdy stan scenariusza (scenaryState) w StateMachine, gdzie TriggerType to Radi
             }
         }
     }
+```
 
 #### StartCarriages
 
@@ -266,14 +280,16 @@ Wagony, które zostaną utworzone na początku scenariusza. Mogą to być wagony
 - `withStartState` - Jeśli określono, te wagony zostaną utworzone tylko dla tych stanów początkowych scenariusza. Jeśli pominięto, będą one generowane dla wszystkich scenariuszy.
 - `belongsToPlayerTrain` - Na początku scenariusza pojawi się wyskakujące okienko z informacją o długości i masie pociągu gracza. Ten parametr określa, czy długość i masa wagonów powinny być uwzględniane w pociągu gracza. Można go użyć w scenariuszach, w których gracz rozpoczyna grę od manewrowania do wagonów.
 
+```
     StartCarriages = {
-    { trainType = TrainTypes.Cargo, minLength = 70, maxLength = 100, atSignalName = "LB_Tm304", distance = 60, trainPhysics = TrainPhysics.Bot,
+        { trainType = TrainTypes.Cargo, minLength = 70, maxLength = 100, atSignalName = "LB_Tm304", distance = 60, trainPhysics = TrainPhysics.Bot,
                 withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady" } },
         { trainType = TrainTypes.Cargo, maxWeight = -160, minLength = 300, maxLength = 450, atSignalName = "LB_Tm305", distance = 90, trainPhysics = TrainPhysics.Player, belongsToPlayerTrain = true, 
                 withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5"} },
         { trainType = TrainTypes.Cargo, maxWeight = 160, minLength = 50, maxLength = 100, atSignalName = "DZ_G13", distance = 74, trainPhysics = TrainPhysics.Player,
                 withStartState = { "LALocoReady", "LALocoReady2", "LALocoReady3", "LALocoReady4", "LALocoReady5", "LATrainReady", "AtDZ_Tm12_deco" } }
     }
+```
 
 #### BotScenarios
 
@@ -287,6 +303,7 @@ Każdy klucz zawiera listę „akcji bota” zdefiniowanych przez następujące 
 - `create` - Ustawiane na true, jeśli pociąg bota powinien zostać uruchomiony.
 - `delete` - Ustawiane na true, jeśli pociągi bota powinny zostać usunięte.
 
+```
     BotScenarios = {
         ["LALocoReady"] = {
             { BotId = "BotAtLA", orderType = OrderType.Train, routes = {"LB_R1", "LB_G2kps" }, commands = { BotCommandType.bcDrive } }
@@ -304,6 +321,7 @@ Każdy klucz zawiera listę „akcji bota” zdefiniowanych przez następujące 
             { BotId = "BotCargoAtLCZ", delete = true }
         }
     }
+```
 
 ### ScenarioTriggers.lua
 
