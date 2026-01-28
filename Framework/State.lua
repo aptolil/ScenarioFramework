@@ -40,34 +40,32 @@ local function doTransitionFunctions(stateInfo, triggerName, trainsetInfo)
     end
 end
 
+local function execStateFunction(func, triggerName, trainsetInfo)
+    local success, result = pcall(func, triggerName, trainsetInfo)
+    if (not success) then
+        Debug("Can not execute function in trigger " .. triggerName)
+        Debug("Error msg:" .. result)
+        return false
+    end
+    return result
+end
+
 local function conditionIsFulfilled(stateInfo, triggerName, trainsetInfo)
     if (stateInfo.condition == nil) then
         return true
     end
 
-    if (type(stateInfo.condition) == "table") then
-        for _, func in ipairs(stateInfo.condition)
-        do
-            local success, result = pcall(func, triggerName, trainsetInfo)
-            if (not success) then
-                Debug("Can not execute condition function in trigger " .. triggerName)
-                Debug("Error msg:" .. result)
-                return false
-            end
-            if (not result) then
-                return false
-            end
-        end
-        return true
-    else
-        local success, result = pcall(stateInfo.condition, triggerName, trainsetInfo)
-        if (not success) then
-            Debug("Can not execute condition function in trigger " .. triggerName)
-            Debug("Error msg:" .. result)
+    if (type(stateInfo.condition) ~= "table") then
+        return execStateFunction(stateInfo.condition, triggerName, trainsetInfo)
+    end
+
+    for _, func in ipairs(stateInfo.condition)
+    do
+        if (not execStateFunction(func, triggerName, trainsetInfo)) then
             return false
         end
-        return result
     end
+    return true
 end
 
 local function doStateChange(stateInfo, triggerName, trainsetInfo)
