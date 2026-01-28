@@ -205,11 +205,11 @@ end
 function ChangeTrainStatusToDriving(scenarioState, triggerName, trainsetInfo)
     Debug("Change train status to driving")
     trainsetInfo.SetState(DynamicState.dsCoast, TrainsetState.tsTrain, false)
-    NarrativeText("IsDriving")
+    --NarrativeText("IsDriving")
 end
 
 function ChangeTrainStatusToShunting(scenarioState, triggerName, trainsetInfo)
     Debug("Change train status to shunting")
     trainsetInfo.SetState(DynamicState.dsCoast, TrainsetState.tsShunting, false)
-    NarrativeText("IsShunting")
+    --NarrativeText("IsShunting")
 end
