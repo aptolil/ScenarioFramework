@@ -220,7 +220,12 @@ local function setWeather(weather, instantChange)
     Debug("NEW WEATHER :" .. weather.name)
 
     local snowFallTime = weather.snowFallTime or 0
-    environment.currentTemp = math.random(weather.temp[1], weather.temp[2])
+    local maxTemp = weather.temp[2]
+    if (environment.currentTemp < 0) then
+        maxTemp = environment.currentTemp
+    end
+    environment.currentTemp = math.random(weather.temp[1], math.min(weather.temp[2], maxTemp))
+
     local visibility = math.random(weather.visibility[1], weather.visibility[2])
 
     SetWeather(weather.type, environment.currentTemp, 1000, 100, visibility, 
